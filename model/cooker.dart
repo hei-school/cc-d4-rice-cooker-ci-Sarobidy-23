@@ -4,7 +4,6 @@ import 'dart:math';
 import '../util/global_function.dart'; 
 import '../util/global_variable.dart'; 
 import './ingredient.dart'; 
-import "../util/prompt.dart";
 
 class Cooker {
   double waterLevel = 0.0;
@@ -99,28 +98,12 @@ class Cooker {
     cookInterval?.cancel();
   }
 
-Future<void> addIngredient() async {
-  final ingredients = ingredientExist.keys.toList();
-  print('\nIngredient lists: ');
-  for (var i = 0; i < ingredients.length; i++) {
-    print(' ${i }. ${ingredients[i]}');
+  Future<void> addIngredient(ingredient) async {
+    ingredientList.add(ingredient);
   }
 
-  var ingredientIndex;
-  do {
-    ingredientIndex = await record('Choose ingredient: ');
-  } while (
-      !validNumber(double.parse(ingredientIndex)) &&
-      ingredientIndex != 0);
-
-  final quantity = await getNumberValue('kg');
-
-  ingredientList.add(Ingredient(ingredients[int.parse(ingredientIndex)], quantity));
-}
-
-  Future<void> addWater() async {
-    final water = await getNumberValue('litre');
-    validNumber(water, limit: double.infinity, fieldName: 'water value', objectName: 'cooker');
+  Future<void> addWater(water) async {
+    validNumber(water.toDouble(), limit: double.infinity, fieldName: 'water value', objectName: 'cooker');
     waterLevel += water;
   }
 

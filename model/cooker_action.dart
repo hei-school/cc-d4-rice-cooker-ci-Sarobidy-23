@@ -1,5 +1,10 @@
 import 'dart:async';
+
 import './cooker.dart';
+import './ingredient.dart'; 
+import "../util/prompt.dart";
+import '../util/global_variable.dart'; 
+import '../util/global_function.dart'; 
 
 class Action {
   final String label;
@@ -16,7 +21,21 @@ Map<String, Action> createActions(Cooker cooker) {
       label: 'Add ingredient',
       func: () async {
         try {
-          await cooker.addIngredient();
+          final ingredients = ingredientExist.keys.toList();
+            print('\nIngredient lists: ');
+            for (var i = 0; i < ingredients.length; i++) {
+              print(' ${i }. ${ingredients[i]}');
+            }
+
+            var ingredientIndex;
+            do {
+              ingredientIndex = await record('Choose ingredient: ');
+            } while (
+                !validNumber(double.parse(ingredientIndex)) &&
+                ingredientIndex != 0);
+
+            final quantity = await getNumberValue('kg');
+          await cooker.addIngredient(Ingredient(ingredients[int.parse(ingredientIndex)], quantity));
         } catch (error) {
           print(error.toString());
         }
@@ -26,7 +45,8 @@ Map<String, Action> createActions(Cooker cooker) {
       label: 'Add water',
       func: () async {
         try {
-          await cooker.addWater();
+          final water = await getNumberValue('litre');
+          await cooker.addWater(water);
         } catch (error) {
           print(error.toString());
         }
