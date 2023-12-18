@@ -6,14 +6,13 @@ jobs:
       - image: circleci/node:16.13.2-stretch
     steps:
       - checkout
-
       - run:
-        name: Install dependencies
-        command: npm install
+          name: Install dependencies
+          command: "npm install"
 
       - run:
           name: Run tests
-          command: npm test
+          command: "npm test"
 
 workflows:
   say-hello-workflow:
