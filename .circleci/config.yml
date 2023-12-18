@@ -1,7 +1,7 @@
 version: 2.1
 
 jobs:
-  rice-cooker-test:
+  rice-cooker-test-dart:
     docker:
       - image: google/dart:latest
     steps:
@@ -15,6 +15,6 @@ jobs:
           command: dart test
 
 workflows:
-  rice-cooker-workflow:
+  rice-cooker-workflow-dart:
     jobs:
       - rice-cooker-test
