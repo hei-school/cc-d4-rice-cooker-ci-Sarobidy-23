@@ -14,11 +14,15 @@ The rice cooker have a thermal sensor and thermostat for temperature control. If
 ## Start
 Install the dependency
 ```
+    npm install
+```
+Start 
+```
     npm start
 ```
-start and test
+Run test
 ```
-    npm start
+    npm run test
 ```
 ## Linter & Standard
 The popular standard [airbnb](https://github.com/airbnb/javascript) and linter [eslint](https://eslint.org/).
