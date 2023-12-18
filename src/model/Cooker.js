@@ -1,7 +1,6 @@
-import { getNumberValue, validNumber } from "../util/GlobalFunction.js";
-import { DELTA_TIME, ingredientExist } from "../util/GlobalVariable.js";
-import { record } from "../util/prompt.js";
-import { Ingredient } from "./Ingredient.js";
+import { validNumber } from "../util/GlobalFunction.js";
+import { DELTA_TIME } from "../util/GlobalVariable.js";
+
 
 export class Cooker {
   waterLevel;
@@ -111,41 +110,21 @@ export class Cooker {
     this.cookInterval = null;
   }
 
-  async addIngredient() {
-    const ingredients = Object.keys(ingredientExist);
-    console.log("\nIngredient lists: ");
-    Object.keys(ingredientExist).forEach((ingredient, index) => {
-      console.log(` ${index}. ${ingredient}`);
-    });
-
-    let ingredientIndex = null;
-    do {
-      ingredientIndex = await record("Choose sakafo ein: ");
-    } while (
-      !validNumber(ingredientIndex, ingredients.length - 1, "ingredient") &&
-      ingredientIndex != 0
-    );
-
-    const quantity = await getNumberValue("kg");
+  async addIngredient(ingredient) {
     this.ingredientList = [
-      ...this.ingredientList,
-      new Ingredient(ingredients[ingredientIndex], quantity),
+      ...this.ingredientList, ingredient
     ];
   }
 
-  async addWater() {
-    const water = await getNumberValue("litre");
+  async addWater(quantity) {
     this.waterLevel =
-      this.waterLevel + validNumber(water, "water value", "cooker");
+      this.waterLevel + validNumber(quantity, "water value", "cooker");
   }
 
   getIngredient() {
     if (!this.ingredientList.length) {
       throw new Error("\nNo ingredient yet.");
     }
-    console.log("\nIngredient lists:");
-    this.ingredientList.forEach((ingredient) => {
-      console.log(`\t${ingredient.name}\t${ingredient.quantity} kg`);
-    });
+    return this.ingredientList
   }
 }

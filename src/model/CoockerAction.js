@@ -1,10 +1,26 @@
+import { getNumberValue, validNumber } from "../util/GlobalFunction.js";
+import { ingredientExist } from "../util/GlobalVariable.js";
+import { record } from "../util/prompt.js";
+import { Ingredient } from "./Ingredient.js";
+
 export const Action = (cooker) => {
   return {
     addIngredient: {
       label: "Add ingredient",
       func: async () => {
         try {
-          await cooker.addIngredient();
+          const ingredients = Object.keys(ingredientExist);
+          console.log("\nIngredient lists: ");
+          Object.keys(ingredientExist).forEach((ingredient, index) => {
+            console.log(` ${index}. ${ingredient}`);
+          });
+      
+          let ingredientIndex  = await record("Choose sakafo ein: ");
+          validNumber(ingredientIndex, ingredients.length - 1, "ingredient") 
+          const quantity = await getNumberValue("kg");
+
+          await cooker.addIngredient(new Ingredient(ingredients[ingredientIndex], quantity));
+          console.log(`${ingredients[ingredientIndex]} ${quantity} kg is added.`);
         } catch (error) {
           console.log(error.message);
         }
@@ -14,7 +30,8 @@ export const Action = (cooker) => {
       label: "Add water",
       func: async () => {
         try {
-          await cooker.addWater();
+          const water = await getNumberValue("litre");
+          await cooker.addWater(water);
         } catch (error) {
           console.error(error.message);
         }
@@ -64,7 +81,11 @@ export const Action = (cooker) => {
       label: "Ingredient lists",
       func: () => {
         try {
-          cooker.getIngredient();
+          let ingredientList = cooker.getIngredient();
+          console.log("\nIngredient lists:");
+          ingredientList.forEach((ingredient) => {
+            console.log(`\t${ingredient.name}\t${ingredient.quantity} kg`);
+          });
         } catch (error) {
           console.error(error.message);
         }
