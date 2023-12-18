@@ -15,6 +15,6 @@ jobs:
           command: "npm test"
 
 workflows:
-  say-hello-workflow:
+  rice-cooker-workflow:
     jobs:
       - rice-cooker-test

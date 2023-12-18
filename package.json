@@ -16,7 +16,7 @@
     "eslint-plugin-airbnb": "^0.0.1-security"
   },
   "scripts": {
-    "test": "jest",
+    "test": "jest --forceExit",
     "start": "node index.js"
   },
   "keywords": [],
