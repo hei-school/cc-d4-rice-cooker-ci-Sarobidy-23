@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import './prompt.dart'; // Import the record function from prompt.dart
+import './prompt.dart';
 
 Future<double> getNumberValue(String unit) async {
   final input = await record('Enter a number value ($unit): ');

@@ -1,9 +1,9 @@
 import './util/prompt.dart';
 import './model/cooker.dart';
-import './model/cookerAction.dart';
+import './model/cooker_action.dart';
 
 void main() async {
-  final cooker = Cooker(); // Assume Cooker is instantiated somewhere
+  final cooker = Cooker();
   final options = createActions(cooker);
   final exitValue = options.length - 1;
   var chosenOption = 0;

@@ -1,5 +1,5 @@
-import "../util/globalFunction.dart";
-import "../util/globalVariable.dart";
+import "../util/global_function.dart";
+import "../util/global_variable.dart";
 
 class Ingredient {
   late String name;

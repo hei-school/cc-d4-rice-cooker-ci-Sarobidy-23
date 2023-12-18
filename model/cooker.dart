@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'dart:math';
 
-import '../util/globalFunction.dart'; // For `getNumberValue` and `validNumber`
-import '../util/globalVariable.dart'; // For `DELTA_TIME` and `ingredientExist`
-import './ingredient.dart'; // For `Ingredient` class
+import '../util/global_function.dart'; 
+import '../util/global_variable.dart'; 
+import './ingredient.dart'; 
 import "../util/prompt.dart";
 
 class Cooker {
