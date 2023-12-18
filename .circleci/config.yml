@@ -1,0 +1,21 @@
+version: 2.1
+
+jobs:
+  rice-cooker-test:
+    docker:
+      - image: circleci/node:16.13.2-stretch
+    steps:
+      - checkout
+
+      - run:
+        name: Install dependencies
+        command: npm install
+
+      - run:
+          name: Run tests
+          command: npm test
+
+workflows:
+  say-hello-workflow:
+    jobs:
+      - rice-cooker-test
