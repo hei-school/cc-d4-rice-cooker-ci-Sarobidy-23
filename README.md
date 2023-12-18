@@ -1,5 +1,5 @@
 ## Prerequisites
-- dart sdk ^3.2.0
+- dart sdk ^2.15.1
 
 ## Start
 Install dependency
